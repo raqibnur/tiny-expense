@@ -22,7 +22,15 @@ const ExpenseList = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div
+      className="space-y-4 max-h-[500px] overflow-y-auto [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+    >
       {expenses.length === 0 ? (
         <p className="text-center text-gray-500">No expenses recorded yet</p>
       ) : (

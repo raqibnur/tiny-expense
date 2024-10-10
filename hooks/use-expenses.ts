@@ -22,7 +22,7 @@ const useExpenses = (selectedMonth: string) => {
         .select("*")
         .gte("created_at", startOfMonth.toISOString())
         .lt("created_at", endOfMonth.toISOString())
-        .order("created_at", { ascending: true });
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
 

@@ -38,7 +38,6 @@ const ExpenseForm = ({
       description,
       amount: parseFloat(amount),
       category,
-      created_at: new Date(selectedMonth).toISOString(),
     };
 
     try {

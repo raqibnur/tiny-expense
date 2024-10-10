@@ -69,7 +69,7 @@ const ExpenseTracker = () => {
       </Card>
 
       <div className="grid grid-cols-2 gap-4">
-        <Card className="shadow-none max-h-[625px] overflow-y-auto">
+        <Card className="shadow-none">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <div className="flex items-center">

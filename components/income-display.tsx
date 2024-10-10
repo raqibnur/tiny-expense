@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Edit2 } from "lucide-react";
+import { PencilLine } from "lucide-react";
 import { useRef } from "react";
 import IncomeChart from "./income-chart";
 
@@ -41,9 +41,9 @@ const IncomeDisplay = ({
             </Button>
           </form>
         ) : (
-          <Button variant="ghost" size="sm" onClick={handleIncomeEdit}>
-            Income: ৳{monthlyIncome?.toFixed(2) || "0.00"}
-            <Edit2 className="w-4 h-4 ml-2" />
+          <Button variant="outline" size="sm" onClick={handleIncomeEdit}>
+            Income: ৳{monthlyIncome?.toFixed(0) || "0.00"}
+            <PencilLine className="w-4 h-4 ml-2" />
           </Button>
         )}
       </div>
