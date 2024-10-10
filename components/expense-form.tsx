@@ -10,7 +10,13 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/app/lib/supabase";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({
+  selectedMonth,
+  fetchExpenses,
+}: {
+  selectedMonth: string;
+  fetchExpenses: () => void;
+}) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -32,7 +38,7 @@ const ExpenseForm = () => {
       description,
       amount: parseFloat(amount),
       category,
-      created_at: new Date().toISOString(),
+      created_at: new Date(selectedMonth).toISOString(),
     };
 
     try {
@@ -40,13 +46,11 @@ const ExpenseForm = () => {
 
       if (error) throw error;
 
-      // Clear form after successful submission
+      fetchExpenses();
+      // Clear input fields
       setDescription("");
       setAmount("");
       setCategory("");
-
-      // Optionally, you can add a success message or trigger a refresh of the expense list
-      console.log("Expense added successfully");
     } catch (err) {
       console.error("Error adding expense:", err);
     }

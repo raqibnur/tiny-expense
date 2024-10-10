@@ -39,7 +39,9 @@ const ExpenseList = ({
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="font-semibold">{expense.amount.toFixed(2)}</span>
+              <span className="font-semibold">
+                ৳{expense.amount.toFixed(2)}
+              </span>
               <Button
                 variant="ghost"
                 size="icon"

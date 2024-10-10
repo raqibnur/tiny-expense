@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Edit2 } from "lucide-react";
 import { useRef } from "react";
+import IncomeChart from "./income-chart";
 
 const IncomeDisplay = ({
   isEditingIncome,
@@ -10,6 +11,7 @@ const IncomeDisplay = ({
   monthlyIncome,
   setMonthlyIncome,
   totalExpenses,
+  displayType,
 }: {
   isEditingIncome: boolean;
   handleIncomeEdit: () => void;
@@ -17,12 +19,13 @@ const IncomeDisplay = ({
   monthlyIncome: number | null;
   setMonthlyIncome: (income: number) => void;
   totalExpenses: number;
+  displayType: "button" | "chart";
 }) => {
   const incomeInputRef = useRef<HTMLInputElement>(null);
 
-  return (
-    <div className="mt-4 text-center">
-      <div className="flex items-center justify-center">
+  if (displayType === "button") {
+    return (
+      <div className="flex items-center">
         {isEditingIncome ? (
           <form onSubmit={handleIncomeSubmit} className="flex items-center">
             <Input
@@ -38,23 +41,22 @@ const IncomeDisplay = ({
             </Button>
           </form>
         ) : (
-          <>
-            <p className="text-lg font-semibold mr-2">
-              Monthly Income: ৳{monthlyIncome?.toFixed(2) || "0.00"}
-            </p>
-            <Button variant="ghost" size="sm" onClick={handleIncomeEdit}>
-              <Edit2 className="w-4 h-4" />
-            </Button>
-          </>
+          <Button variant="ghost" size="sm" onClick={handleIncomeEdit}>
+            Income: ৳{monthlyIncome?.toFixed(2) || "0.00"}
+            <Edit2 className="w-4 h-4 ml-2" />
+          </Button>
         )}
       </div>
-      <p className="text-lg font-semibold mt-2">
-        Total Expenses: ৳{totalExpenses.toFixed(2)}
-      </p>
+    );
+  }
+
+  return (
+    <div className="mt-4">
       {monthlyIncome !== null && (
-        <p className="text-lg font-semibold mt-2">
-          Remaining: ৳{(monthlyIncome - totalExpenses).toFixed(2)}
-        </p>
+        <IncomeChart
+          monthlyIncome={monthlyIncome}
+          totalExpenses={totalExpenses}
+        />
       )}
     </div>
   );
