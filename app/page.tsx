@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import ExpenseChart from "@/components/expense-chart";
 import ExpenseForm from "@/components/expense-form";
 import ExpenseList from "@/components/expense-list";
-import ExpenseChart from "@/components/expense-chart";
 import IncomeDisplay from "@/components/income-display";
 import MonthSelector from "@/components/month-selector";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useExpenses from "@/hooks/use-expenses";
 import useIncome from "@/hooks/use-income";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { useEffect, useState } from "react";
 const ExpenseTracker = () => {
   const [selectedMonth, setSelectedMonth] = useState<string>(
     new Date().toISOString().slice(0, 7)
@@ -54,7 +53,7 @@ const ExpenseTracker = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-4 space-y-6">
-      <Card className="shadow-none">
+      <Card className="shadow-none shadowBox">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">
             Family Expense Tracker
@@ -68,8 +67,8 @@ const ExpenseTracker = () => {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-2 gap-4">
-        <Card className="shadow-none">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <Card className="shadow-none shadowBox">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <div className="flex items-center">
@@ -91,7 +90,7 @@ const ExpenseTracker = () => {
         </Card>
 
         <div>
-          <Card className="shadow-none">
+          <Card className="shadow-none shadowBox">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div>

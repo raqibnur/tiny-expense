@@ -1,10 +1,10 @@
 "use client";
 
-import { Bar, BarChart, LabelList, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ChartContainer } from "@/components/ui/chart";
+
 import { Separator } from "@/components/ui/separator";
 import React from "react";
+import { Areachart } from "./area-chart";
 
 type IncomeChartProps = {
   monthlyIncome: number;
@@ -16,76 +16,21 @@ export default function IncomeChart({
   totalExpenses,
 }: IncomeChartProps) {
   const remaining = monthlyIncome - totalExpenses;
-  const maxValue = Math.max(
-    Math.abs(monthlyIncome),
-    Math.abs(totalExpenses),
-    Math.abs(remaining)
-  );
 
   const formatCurrency = (value: number) => {
     const absValue = Math.abs(value);
     return value < 0 ? `-৳${absValue}` : `৳${absValue}`;
   };
 
-  const data = [
-    {
-      activity: "Income",
-      value: (Math.abs(monthlyIncome) / maxValue) * 100,
-      label: `৳${monthlyIncome.toFixed(2)}`,
-      fill: "hsl(var(--chart-1))",
-    },
-    {
-      activity: "Expenses",
-      value: (Math.abs(totalExpenses) / maxValue) * 100,
-      label: `৳${totalExpenses.toFixed(2)}`,
-      fill: "hsl(var(--chart-2))",
-    },
-    {
-      activity: "Remaining",
-      value: (Math.abs(remaining) / maxValue) * 100,
-      label: `৳${remaining.toFixed(2)}`,
-      fill: "hsl(var(--chart-4))",
-    },
-  ];
-
   return (
-    <Card className="max-w-xl shadow-none  mt-5">
-      <CardContent className="flex gap-4 p-4 pb-2">
-        <ChartContainer
-          config={{
-            Income: { color: "hsl(var(--chart-1))" },
-            Expenses: { color: "hsl(var(--chart-2))" },
-            Remaining: { color: "hsl(var(--chart-4))" },
-          }}
-          className="h-[140px] w-full"
-        >
-          <BarChart
-            data={data}
-            layout="vertical"
-            barSize={32}
-            barGap={2}
-            margin={{ left: 80, right: 0, top: 0, bottom: 10 }}
-          >
-            <XAxis type="number" hide />
-            <YAxis
-              dataKey="activity"
-              type="category"
-              axisLine={false}
-              tickLine={false}
-            />
-            <Bar dataKey="value" radius={5}>
-              <LabelList
-                position="insideLeft"
-                dataKey="label"
-                fill="black"
-                offset={8}
-                fontSize={12}
-              />
-            </Bar>
-          </BarChart>
-        </ChartContainer>
+    <Card className="max-w-xl shadow-none shadowBox  mt-5">
+      <CardContent>
+        <Areachart
+          monthlyIncome={monthlyIncome}
+          totalExpenses={totalExpenses}
+        />
       </CardContent>
-      <CardFooter className="flex flex-row border-t p-4">
+      <CardFooter className="flex flex-row border-t p-4 -mt-20">
         <div className="flex w-full items-center gap-2">
           {[
             { label: "Income", value: monthlyIncome },

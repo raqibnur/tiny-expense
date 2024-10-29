@@ -1,4 +1,11 @@
-import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  Tooltip,
+} from "recharts";
 
 const ExpenseChart = ({
   categoryTotals,
@@ -46,6 +53,7 @@ const ExpenseChart = ({
               ))}
             </Pie>
             <Legend />
+            <Tooltip />
           </PieChart>
         </ResponsiveContainer>
       )}

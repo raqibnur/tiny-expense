@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -9,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { supabase } from "@/app/lib/supabase";
+import Button14 from "./loading-btn";
 
 const ExpenseForm = ({
   selectedMonth,
@@ -83,7 +83,8 @@ const ExpenseForm = ({
           ))}
         </SelectContent>
       </Select>
-      <Button onClick={addExpense}>Add Expense</Button>
+      {/* <Button onClick={addExpense}>Add Expense</Button> */}
+      <Button14 addExpense={addExpense} />
     </div>
   );
 };
